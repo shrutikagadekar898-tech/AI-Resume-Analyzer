@@ -1,0 +1,435 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+html,
+body,
+[class*="css"] {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background */
+.stApp {
+    background: linear-gradient(135deg, #eef5ff, #d9e8ff);
+}
+
+/* Main Title */
+h1 {
+    text-align: center;
+    color: white;
+    background: linear-gradient(90deg, #2563eb, #1d4ed8);
+    padding: 18px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+}
+
+/* Headings */
+h2,
+h3 {
+    color: #1e3a8a;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background: #0f172a;
+}
+
+section[data-testid="stSidebar"] * {
+    color: white !important;
+}
+
+/* Cards */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+    margin-bottom: 20px;
+}
+
+/* Metrics */
+[data-testid="stMetric"] {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, .15);
+    border-left: 6px solid #2563eb;
+}
+
+/* Buttons */
+.stButton>button {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #2563eb, #1e40af);
+}
+
+.stButton>button:hover {
+    transform: scale(1.03);
+}
+
+/* Download Button */
+.stDownloadButton>button {
+    width: 100%;
+    background: #16a34a;
+    color: white;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* File Uploader */
+[data-testid="stFileUploader"] {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
+}
+
+/* Progress */
+.stProgress>div>div {
+    background: #2563eb;
+}
+
+/* Success */
+div[data-baseweb="notification"] {
+    border-radius: 12px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    color: #666;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+/* Main Content Background */
+.main .block-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.10);
+}
+
+/* Success Boxes */
+div[data-testid="stAlert"] {
+    background: #d1fae5 !important;
+    color: #065f46 !important;
+    border-left: 6px solid #10b981 !important;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* Warning Boxes */
+div[data-baseweb="notification"] {
+    border-radius: 12px;
+}
+
+/* Metric Cards */
+[data-testid="stMetric"] {
+    background: white;
+    border-radius: 15px;
+    padding: 18px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .12);
+    text-align: center;
+}
+
+/* ===========================
+   PREMIUM SIDEBAR
+=========================== */
+
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #111827, #1e293b, #0f172a);
+}
+
+/* Logo Box */
+.logo-box {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: rgb(231, 216, 216);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .35);
+    margin-bottom: 25px;
+}
+
+/* Sidebar Cards */
+section[data-testid="stSidebar"] .stSuccess {
+    background: #d6b9b9 !important;
+    color: #111827 !important;
+    border-left: 6px solid #2563eb;
+    border-radius: 15px;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
+}
+
+/* Card Hover */
+section[data-testid="stSidebar"] .stSuccess:hover {
+    background: #2563eb !important;
+    color: rgb(221, 195, 195) !important;
+    transition: .3s;
+    transform: translateX(5px);
+}
+
+/* Sidebar Text */
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] span,
+section[data-testid="stSidebar"] label {
+    color: black !important;
+}
+
+/* Divider */
+section[data-testid="stSidebar"] hr {
+    border-color: #374151;
+}
+
+/* Headings */
+h1 {
+    color: rgb(250, 207, 207) !important;
+}
+
+h2,
+h3 {
+    color: #1e3a8a !important;
+}
+
+/* Text */
+p,
+span,
+label {
+    color: #111827 !important;
+}
+
+/* File Uploader */
+[data-testid="stFileUploader"] {
+    border: 2px dashed #2563eb;
+    background: white;
+}
+
+/* Progress Bar */
+.stProgress>div>div {
+    background: #2563eb;
+}
+
+.match-card {
+    background: #236f40;
+    border-left: 6px solid #098b39;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+    color: #12582e;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.missing-card {
+    background: #d2666d;
+    border-left: 6px solid #e73f3f;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+    color: #a11a1a;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.match-card {
+    color: #1a6e3d !important;
+}
+
+.missing-card {
+    color: #941616 !important;
+}
+
+.stApp {
+    background: linear-gradient(135deg, #c0ead0, #d3dfe6, #f6f5f5);
+}
+
+.main .block-container {
+    background: rgba(222, 165, 165, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+h1 {
+    color: #5a177c !important;
+    font-size: 42px !important;
+    font-weight: 800 !important;
+}
+
+h2,
+h3 {
+    color: #2162ef !important;
+    font-weight: 700 !important;
+}
+
+[data-testid="stMetric"] {
+    background: #dcbaba;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .12);
+    border-top: 5px solid #1f60ec;
+}
+
+/* ===== Skills Chips ===== */
+
+.skill-chip {
+    display: inline-block;
+    padding: 10px 18px;
+    margin: 8px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 5px 15px rgba(37, 99, 235, .35);
+    transition: .3s;
+}
+
+.skill-chip:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, .45);
+}
+
+/* ===== Premium Skill Chips ===== */
+
+.skill-chip {
+    display: inline-block;
+    padding: 12px 22px;
+    margin: 8px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    box-shadow: 0 6px 15px rgba(37, 99, 235, .35);
+    transition: all .3s ease;
+}
+
+.skill-chip:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    box-shadow: 0 10px 25px rgba(124, 58, 237, .40);
+}
+
+/* ==========================
+   Dashboard Metric Cards
+========================== */
+
+[data-testid="stMetric"] {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.35s ease;
+}
+
+/* Hover Effect */
+[data-testid="stMetric"]:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.25);
+    border: 2px solid #2563eb;
+    cursor: pointer;
+}
+
+/* Metric Label */
+[data-testid="stMetricLabel"] {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #374151 !important;
+}
+
+/* Metric Value */
+[data-testid="stMetricValue"] {
+    color: #2563eb !important;
+    font-size: 34px !important;
+    font-weight: 800 !important;
+}
+
+.stSuccess,
+.stWarning,
+.stError,
+.stInfo {
+    border-radius: 18px;
+    transition: all .3s ease;
+}
+
+.stSuccess:hover,
+.stWarning:hover,
+.stError:hover,
+.stInfo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .18);
+}
+
+/* ===============================
+   SUMMARY DASHBOARD CARDS
+================================*/
+
+.summary-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.summary-card {
+
+    flex: 1;
+    min-width: 220px;
+
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+
+    color: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    transition: .35s;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
+
+}
+
+.summary-card:hover {
+
+    transform: translateY(-10px) scale(1.04);
+
+    box-shadow: 0 18px 35px rgba(37, 99, 235, .45);
+
+}
+
+.summary-card h2 {
+
+    font-size: 20px;
+
+    margin-bottom: 15px;
+
+}
+
+.summary-card h1 {
+
+    font-size: 42px;
+
+    margin: 0;
+
+    font-weight: 800;
+
+}
