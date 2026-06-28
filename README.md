@@ -6,23 +6,6 @@ It helps users analyze their resume, calculate ATS score, compare it with a Job 
 
 ---
 
-## 📸 Screenshots
-
-> Add screenshots inside the `assets` folder.
-
-Example:
-
-```
-assets/
-│── dashboard.png
-│── ats_score.png
-│── resume_match.png
-│── cover_letter.png
-│── interview.png
-```
-
----
-
 ## ✨ Features
 
 - 📄 Upload Resume (PDF)
@@ -194,6 +177,8 @@ PDF Report
 - Multi-language Resume Analysis
 
 ---
+ ## 🚀 Live Demo
+👉https://ai-resume-analyzer-qv27ccc4ddd9kisfpfsfzf.streamlit.app/
 
 ## 👩‍💻 Author
 
