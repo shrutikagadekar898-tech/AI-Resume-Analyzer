@@ -1,16 +1,24 @@
 from utils.skill_extractor import extract_skills
 
-def generate_summary(resume_text, missing_skills):
+def generate_summary(resume_text, ats, match_score, missing_skills):
 
     skills = extract_skills(resume_text)
 
     summary = f"""
-Your resume contains {len(skills)} technical skills.
+📄 Resume Analysis Summary
 
-Strengths:
-✅ Strong technical profile
-✅ Projects included
-✅ ATS friendly resume
+⭐ ATS Score : {ats}%
+
+🎯 Resume Match : {match_score}%
+
+🛠 Skills Found : {len(skills)}
+
+----------------------------------
+
+Strengths
+✅ ATS Friendly Resume
+✅ Projects Included
+✅ Technical Skills Present
 
 """
 
@@ -18,9 +26,9 @@ Strengths:
         summary += "\nAreas to Improve:\n"
 
         for skill in missing_skills:
-            summary += f"• Learn or add {skill}\n"
-
+            summary += f"• Add {skill}\n"
     else:
-        summary += "\nExcellent! Your resume matches the job description."
+        summary += "\n🎉 Excellent! No important skills are missing."
 
     return summary
+    
