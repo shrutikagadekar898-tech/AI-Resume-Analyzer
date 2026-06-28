@@ -1,6 +1,7 @@
 import streamlit as st
 from utils.gemini_rewriter import rewrite_resume_ai
 import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 from utils.gemini_interview import generate_interview_questions
 from utils.gemini_cover_letter import generate_cover_letter_ai
 from utils.ai_summary import generate_summary
@@ -113,12 +114,46 @@ if uploaded_file:
              html += f'<span class="skill-chip">{skill}</span>'
 
           st.markdown(html, unsafe_allow_html=True)
-    st.subheader("⭐ ATS Score")
+    st.markdown("---")
+    st.subheader("⭐ Professional ATS Score")
 
-    st.progress(int(ats))
+    fig = go.Figure(
+        go.Indicator(
+        mode="gauge+number",
+        value=ats,
+        number={"suffix": "%"},
+        title={"text": "<b>ATS Score</b>", "font": {"size": 26}},
+        gauge={
+            "axis": {"range": [0, 100]},
+            "bar": {"color": "#2563EB"},
+            "steps": [
+                {"range": [0, 40], "color": "#FECACA"},
+                {"range": [40, 70], "color": "#FDE68A"},
+                {"range": [70, 100], "color": "#BBF7D0"}
+            ],
+            "threshold": {
+                "line": {"color": "red", "width": 4},
+                "thickness": 0.75,
+                "value": ats
+            }
+        }
+    )
+    )
 
-    st.success(f"{ats}%")
+    fig.update_layout(
+    height=350,
+    margin=dict(l=20, r=20, t=50, b=20)
+   )
 
+    st.plotly_chart(fig, use_container_width=True)
+
+# Score Message
+    if ats >= 85:
+      st.success("🏆 Excellent ATS Score! Your resume is highly ATS-friendly.")
+    elif ats >= 70:
+        st.warning("⭐ Good ATS Score. A few improvements can make it stronger.")
+    else:
+        st.error("⚠️ Low ATS Score. Add more relevant keywords and projects.")
     # ATS Chart
 
     st.markdown("---")
@@ -307,8 +342,12 @@ unsafe_allow_html=True)
 
     st.markdown("---")
     st.subheader("🤖 AI Resume Summary")
-    summary = generate_summary(resume_text, missing)
-
+    summary = generate_summary(
+    resume_text,
+    ats,
+    match_score,
+    missing
+)
     st.info(summary)
     # ---------------- Skills Comparison ---------------- #
 
@@ -408,121 +447,131 @@ unsafe_allow_html=True)
     if not recommended:
         st.success("Your resume already covers the detected job skills.")
 
-st.markdown("---")
-st.subheader("🤖 AI Resume Rewrite (Gemini)")
+    st.markdown("---")
+        # ---------------- AI Resume Rewrite ---------------- #
 
-if st.button("✨ Rewrite Resume with AI"):
+    st.subheader("🤖 AI Resume Rewrite (Gemini)")
 
-    with st.spinner("Gemini is improving your resume..."):
+    if st.button("✨ Rewrite Resume with AI"):
 
-        improved_resume = rewrite_resume_ai(resume_text)
+        with st.spinner("Improving your resume..."):
 
-    st.success("✅ Resume rewritten successfully!")
+            improved_resume = rewrite_resume_ai(resume_text)
 
-    st.text_area(
-        "AI Improved Resume",
-        improved_resume,
-        height=400
-    )
+        st.success("✅ Resume rewritten successfully!")
 
-    st.download_button(
-        "📄 Download Improved Resume",
-        improved_resume,
-        file_name="AI_Improved_Resume.txt",
-        mime="text/plain"
-    )
-    # ---------------- Download PDF Report ---------------- #
+        st.text_area(
+            "AI Improved Resume",
+            improved_resume,
+            height=350
+        )
 
-st.markdown("---")
-st.subheader("📄 Download Report")
+        st.download_button(
+            "📄 Download Improved Resume",
+            improved_resume,
+            file_name="AI_Improved_Resume.txt",
+            mime="text/plain"
+        )
 
-report_path = generate_report(
+    # ---------------- PDF Report ---------------- #
+
+    st.markdown("---")
+    st.subheader("📄 ATS Analysis Report")
+
+    report_path = generate_report(
         ats,
         match_score,
         skills,
         matched,
         missing,
         suggestions
-)
+    )
 
-with open(report_path, "rb") as pdf_file:
+    with open(report_path, "rb") as pdf_file:
 
-    st.download_button(
-            label="📥 Download ATS Analysis Report",
-            data=pdf_file,
+        st.download_button(
+            "📥 Download ATS Report",
+            pdf_file,
             file_name="ATS_Report.pdf",
             mime="application/pdf"
-    )
-
-st.success("✅ Resume Analysis Completed Successfully!")
-
-st.markdown("---")
-st.subheader("📄 AI Cover Letter Generator")
-
-name = st.text_input("👤 Your Name")
-
-job_role = st.text_input(
-    "💼 Job Role",
-    "Java Developer"
-)
-
-company = st.text_input(
-    "🏢 Company Name"
-)
-
-if st.button("✨ Generate AI Cover Letter"):
-
-    with st.spinner("Generating professional cover letter..."):
-
-        cover_letter = generate_cover_letter_ai(
-            name,
-            job_role,
-            company,
-            resume_text
         )
 
-    st.success("✅ Cover Letter Generated Successfully!")
+    # ---------------- AI Cover Letter ---------------- #
 
-    st.text_area(
-        "Generated Cover Letter",
-        cover_letter,
-        height=400
+    st.markdown("---")
+    st.subheader("💌 AI Cover Letter Generator")
+
+    name = st.text_input("👤 Your Name")
+
+    job_role = st.text_input(
+        "💼 Job Role",
+        "Java Developer"
     )
 
-    st.download_button(
-        "📄 Download Cover Letter",
-        cover_letter,
-        file_name="AI_Cover_Letter.txt",
-        mime="text/plain"
-    )
-st.markdown("---")
-st.subheader("🎤 AI Mock Interview")
-
-role = st.text_input(
-    "Enter Job Role",
-    "Java Developer"
-)
-
-if st.button("Generate Interview Questions"):
-
-    with st.spinner("Generating Questions..."):
-
-        questions = generate_interview_questions(role)
-
-    st.success("Interview Questions Ready!")
-
-    st.text_area(
-        "Interview Questions",
-        questions,
-        height=450
+    company = st.text_input(
+        "🏢 Company Name"
     )
 
-    st.download_button(
-        "Download Questions",
-        questions,
-        file_name="Interview_Questions.txt",
-        mime="text/plain"
+    if st.button("✨ Generate Cover Letter"):
+
+        with st.spinner("Generating Cover Letter..."):
+
+            cover_letter = generate_cover_letter_ai(
+                name,
+                job_role,
+                company,
+                resume_text
+            )
+
+        st.success("✅ Cover Letter Generated!")
+
+        st.text_area(
+            "Generated Cover Letter",
+            cover_letter,
+            height=350
+        )
+
+        st.download_button(
+            "📄 Download Cover Letter",
+            cover_letter,
+            file_name="AI_Cover_Letter.txt",
+            mime="text/plain"
+        )
+
+    # ---------------- AI Mock Interview ---------------- #
+
+    st.markdown("---")
+    st.subheader("🎤 AI Mock Interview")
+
+    role = st.text_input(
+        "Enter Job Role",
+        "Java Developer",
+        key="role_input"
     )
+
+    if st.button("Generate Interview Questions"):
+
+        with st.spinner("Generating Questions..."):
+
+            questions = generate_interview_questions(role)
+
+        st.success("✅ Interview Questions Ready!")
+
+        st.text_area(
+            "Interview Questions",
+            questions,
+            height=400
+        )
+
+        st.download_button(
+            "📄 Download Questions",
+            questions,
+            file_name="Interview_Questions.txt",
+            mime="text/plain"
+        )
+
+    st.markdown("---")
+    st.success("🎉 AI Resume Analysis Completed Successfully!")
 st.markdown("""
 <div class="footer">
 
